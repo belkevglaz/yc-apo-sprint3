@@ -30,6 +30,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: smart-home-monolith
           push: true
-          tags: ghcr.io/belkevglaz/yc-apo-sprint3:latest
+          tags: ghcr.io/belkevglaz/smart-home-monolith:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
