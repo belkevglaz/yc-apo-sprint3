@@ -9,6 +9,7 @@ import ru.yandex.practicum.smarthome.repository.HeatingSystemRepository;
 @Service
 @RequiredArgsConstructor
 public class HeatingSystemServiceImpl implements HeatingSystemService {
+
     private final HeatingSystemRepository heatingSystemRepository;
     
     @Override

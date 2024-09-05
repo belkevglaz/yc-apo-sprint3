@@ -1,0 +1,10 @@
+site_name: SmartHome Documentation
+theme: readthedocs
+markdown_extensions:
+  - md_in_html
+  - plantuml_markdown
+extra_css:
+  - 'extra.css'
+plugins:
+  - plantuml:
+      puml_url: https://www.plantuml.com/plantuml/
