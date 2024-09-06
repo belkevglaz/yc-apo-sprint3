@@ -149,7 +149,7 @@ terraform.rc
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/terraform,helm,visualstudiocode,jetbrains+all
-target/
+#target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
