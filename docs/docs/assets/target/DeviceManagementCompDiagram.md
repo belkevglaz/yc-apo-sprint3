@@ -4,7 +4,7 @@
 
 title Component diagram for Smart Home System - Device Management
 
-skinparam linetype ortho
+'skinparam linetype ortho
 
 AddElementTag("queue", $shape=RoundedBoxShape(), $bgColor="#b6ccde", $fontColor="white", $legendText="event sourcing")
 AddElementTag("storage", $shape=RoundedBoxShape(), $bgColor="lightSkyBlue", $fontColor="white", $legendText="storage")

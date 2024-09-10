@@ -4,13 +4,13 @@
 
 title Component diagram for Smart Home System - Telemetry Handler
 
-skinparam linetype ortho
+'skinparam linetype ortho
 
 AddElementTag("queue", $shape=RoundedBoxShape(), $bgColor="#b6ccde", $fontColor="white", $legendText="event sourcing")
 
 Container_Boundary(SmartHomeSystem, "SmartHome System") {
     Container(ms_telemetry, "Telemetry Handler", "Java, Spring", "Handles external devices messages")
-    ContainerQueue(kafka, "Kafka", "kafka", "Event souring for aggregate and store telemetry events", $tags = "queue")
+    ContainerQueue(kafka, "Kafka", "kafka", "Event sourcing for aggregate and store telemetry events", $tags = "queue")
 }
 
 Container(ms_telemetry, "", "Java, Spring") {

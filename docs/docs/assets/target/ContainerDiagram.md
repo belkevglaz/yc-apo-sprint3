@@ -6,8 +6,8 @@
 title Smart Home Container Diagram
 top to bottom direction
 
-AddBoundaryTag(dash, $borderStyle=DottedLine(), $borderColor="#b8b8b8")
-AddBoundaryTag(invisible, $borderColor="#fafafa")
+AddBoundaryTag(dash, $borderStyle=DottedLine(), $shape=RoundedBoxShape(), $borderColor="#b8b8b8")
+AddBoundaryTag(solidGrey, $borderColor="#fafafa")
 
 AddElementTag("microservice", $shape=RoundedBoxShape(), $bgColor="CornflowerBlue", $fontColor="white", $legendText="microservice")
 AddElementTag("storage", $shape=RoundedBoxShape(), $bgColor="lightSkyBlue", $fontColor="white", $legendText="storage")
@@ -27,11 +27,11 @@ Boundary(c0, "", "") {
     Boundary(c2, "SmartHome") {
     
         Boundary(b1, "", "", $tags = "dash") {
-            Boundary(b11, "", "", $tags = "invisible") {
+            Boundary(b11, "", "", $tags = "solidGrey") {
                 Container(ms_users, "User management", "Java, Spring", "User management", $tags = "microservice")
                 ContainerDb(users_db, "User database", "PostgreSQL", "Stores users  information", $tags = "storage")    
             }
-            Boundary(b12, "", "", $tags = "invisible") {
+            Boundary(b12, "", "", $tags = "solidGrey") {
                 Container(ms_houses, "Houses and settlements management", "Java, Spring", "Locations management", $tags = "microservice")
                 ContainerDb(houses_db, "Locations database", "PostgreSQL", "Stores locations information", $tags = "storage")
             }    
@@ -40,15 +40,15 @@ Boundary(c0, "", "") {
         Boundary(b2, "", "", $tags = "dash") {
             Container(ms_telemetry, "Telemetry handler", "Java, Spring", "Receives and stores telemetry", $tags = "microservice")
             Container(ms_history, "Telemetry reports", "Java, Spring", "Provides telemetry history", $tags = "microservice")
-            ContainerQueue(kafka, "Kafka", "kafka", "Event souring for aggregate and store telemetry events", "Uses kafka protocol", $tags = "queue")
+            ContainerQueue(kafka, "Kafka", "kafka", "Event sourcing for aggregate and store telemetry events", "Uses kafka protocol", $tags = "queue")
         }
         
         Boundary(b3, "", "", $tags = "dash") {
-            Boundary(b31, "", "", $tags = "invisible") {
+            Boundary(b31, "", "", $tags = "solidGrey") {
                 Container(ms_devices, "Devices management", "Java, Spring", "Manages devices", $tags = "microservice")
                 ContainerDb(devices_db, "Devices database", "PostgreSQL", "Stores devices and modules information", $tags = "storage")
             }
-            Boundary(b32, "", "", $tags = "invisible") {
+            Boundary(b32, "", "", $tags = "solidGrey") {
                 Container(ms_automation, "Automation management", "Java, Spring", "Manages & runs automation scenarios", $tags = "microservice")
                 ContainerDb(automation_db, "Automation database", "PostgreSQL", "Stores scenarios, schedulers, launch results", $tags = "storage")
             }
