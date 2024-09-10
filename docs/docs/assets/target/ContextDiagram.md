@@ -1,25 +1,35 @@
 ```puml
 @startuml
-title SmartHome Context Diagram
 
 top to bottom direction
 
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
 
-Person(customer, "Customer", "A user of the smart home system")
-Person(admin, "Administrator", "An administrator managing the system")
+SHOW_PERSON_OUTLINE()
 
-System(smarthome, "SmartHome System", "System manages the heating and check the temperature")
+Boundary(system, "Smart Home Context Diagram") {
+    
+    Boundary(interanl, "Smart Home") {
+        System(smarthome, "SmartHome System", "System manages the heating and check the temperature")
+    
+        Person(customer, "Customer", "A user of the smart home system")
+        Person(admin, "Administrator", "An administrator managing the system")
+    
+        Rel(customer, smarthome, "Uses the system", "JSON/HTTP")
+        Rel(admin,smarthome,"Manages the system",  "JSON/HTTP")
+   
+    }
 
-System_Ext(sensors, "Third-Party Sensors", "Endpoints for retrieve/set data", "Uses mqtt,bluetooth protocols")
-System_Ext(control, "Third-Party Control Module", "Endpoints for retrieve/set data", "Uses rest,mqtt,bluetooth protocols")
+    System_Ext(sensors, "Third-Party Sensors", "Endpoints for retrieve/set data", "Uses json / binary data")
+    System_Ext(control, "Third-Party Control Module", "Endpoints for retrieve/set data", "Uses json / binary data")
+    System_Ext(payment, "External Banking System", "Perform payments", "Uses XML / JSON")
+    
+    Rel(control, smarthome, "Provides telemetry data", "JSON")
+    Rel(sensors, control, "Operates/transfers states", "http,zigbee,bluetooth ")
+    Rel(sensors, smarthome, "Operates sensor's states", "HTTP")
+    Rel(smarthome, payment, "Processes payments", "JSON/XML")
+}
 
-Rel(customer, smarthome, "Uses the system")
-Rel(admin,smarthome,"Manages the system")
-
-Rel(control, smarthome, "Transfer data", "Uses kafka protocol")
-Rel(sensors, control, "Transfer data", "Uses mqtt,bluetooth protocols")
-Rel(smarthome,sensors,"Processes heating data")
-
+SHOW_LEGEND()
 @enduml
 ```
