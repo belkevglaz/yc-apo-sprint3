@@ -55,6 +55,9 @@ Boundary(c0, "", "") {
                 Container(ms_automation, "Automation management", "Java, Spring", "Manages & runs automation scenarios", $tags = "microservice")
                 ContainerDb(automation_db, "Automation database", "PostgreSQL", "Stores scenarios, schedulers, launch results", $tags = "storage")
             }
+            Boundary(b33, "", "", $tags = "solidGrey") {
+                Container(ms_notification, "Websocket", "Java, Spring, Websockets", "Sends notification to user", $tags = "microservice")
+            }
         }
     
         Container(api_gateway, API Gateway, "Kong", "Entry point for all requests to system")
@@ -91,6 +94,9 @@ Boundary(c0, "", "") {
     Rel(ms_devices, sensors, "Manages sensor's states", "JSON/HTTP")
     Rel(ms_devices, control, "Manages module's states", "HTTP")
     Rel(kafka, ms_devices, "Subscribe to", "event", $tags = "async")
+    Rel(kafka, ms_notification, "Subscribe to", "event", $tags = "async")
+    Rel(ms_notification, api_gateway, "Notify users", "websocket")
+    
 
 
 }

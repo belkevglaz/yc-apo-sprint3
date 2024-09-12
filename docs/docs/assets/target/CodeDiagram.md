@@ -50,7 +50,7 @@ class Telemetry {
 
 '--- Device
 
-interface Device {
+abstract class Device {
 +String serialNumber
 +String payload
 +String description
@@ -99,7 +99,7 @@ interface Scenario <T> {
 +void stop()
 }
 
-class AbstractScenario<T> {
+abstract class AbstractScenario<T> {
 +Date startTimestamp
 +Date endTimestamp
 +User createdBy

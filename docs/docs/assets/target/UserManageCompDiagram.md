@@ -1,6 +1,7 @@
+```puml
 @startuml
-'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-!include ../templates/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+'!include ../templates/C4_Component.puml
 
 title Component diagram for Smart Home System - User management
 
@@ -24,3 +25,4 @@ Rel(RepositoryLayer,users_db,"Reads/Writes user data")
 SHOW_LEGEND()
 
 @enduml
+```

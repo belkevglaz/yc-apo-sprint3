@@ -23,6 +23,7 @@ Boundary(c1_strategic_design, "Smart Home Strategic Design") {
         Container(c2_tele, "Collect telemetry", "Subdomain") {
             Component(c3_tele_store, "Collect and store telemetry data", "Context")
             Component(c3_tele_report, "History and reports", "Context")
+            Component(c3_tele_notification, "Notify users about state changes", "Context")
         }
         
     }

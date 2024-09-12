@@ -15,7 +15,8 @@ Boundary(c1_strategic_design, "Smart Home Tactical Design") {
     
     Boundary(c1_telemetry_domain, "Domain: Telemetry management", "") {
         Container(c221, "Microservice: Telemetry handler", "", "Collects, transforms and stores telemetry")
-        Container(c223, "Microservice: History and reports", "", "Produces history reports\n Provides audit reports")
+        Container(c222, "Microservice: History and reports", "", "Produces history reports\n Provides audit reports")
+        Container(c223, "Microservice: Notification", "", "Produces websocket notifications about device's states")
     }
     
     Boundary(c1_device_domain, "Domain: Device management", "") {

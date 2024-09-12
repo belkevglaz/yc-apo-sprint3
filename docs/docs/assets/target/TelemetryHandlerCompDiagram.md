@@ -1,6 +1,7 @@
+```puml
 @startuml
-'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-!include ../templates/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+'!include ../templates/C4_Component.puml
 
 title Component diagram for Smart Home System - Telemetry Handler
 
@@ -28,3 +29,4 @@ Rel(EventPublisher, kafka, "Reads/Writes message data")
 SHOW_LEGEND()
 
 @enduml
+```
