@@ -1,10 +1,10 @@
 ```puml
 @startuml
-
+scale 0.9
 top to bottom direction
 
-'!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-!include ../templates/C4_Component.puml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+'!include ../templates/C4_Component.puml
 
 Boundary(c1_strategic_design, "Smart Home Tactical Design") {
 

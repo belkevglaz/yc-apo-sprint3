@@ -1,7 +1,10 @@
 ```puml
-@startuml 
-'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
-!include ../templates/C4_Container.puml
+@startuml
+
+scale 0.85
+ 
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+'!include ../templates/C4_Container.puml
 
 title Smart Home Container Diagram
 top to bottom direction
