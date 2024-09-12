@@ -1,9 +1,11 @@
+```puml
 @startuml
 title FitLife SmartHouse Code Diagram
 
 top to bottom direction
 
-!include ../templates/C4_Code.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4.puml
+'!include ../templates/C4_Code.puml
 
 class Role {
 +String role
@@ -54,6 +56,8 @@ abstract class Device {
 +String serialNumber
 +String payload
 +String description
++boolean isDirect
++String address
 }
 
 enum DeviceType {
@@ -73,7 +77,7 @@ class Module<T> {
 }
 Module --|> Device
 Module "1..*" -- "1" DeviceType : defines
-Module "1" -- "1..*" Sensor : contains
+Module "1" -- "0..*" Sensor : contains
 House "1" -- "1..*" Module : contains
 
 class Sensor<T> {
@@ -132,3 +136,6 @@ ScheduledScenario "1" -- "1..*" ScenarioTemplate : has
 
 
 @enduml
+
+
+```

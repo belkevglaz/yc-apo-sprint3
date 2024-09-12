@@ -114,3 +114,11 @@
     {% include 'assets/target/DinamicDiagram.md' %}
 </details>
 
+## 4.3 Диаграмма кода
+
+<details>
+  <summary>C4 Code Diagram</summary>
+    {% include 'assets/target/CodeDiagram.md' %}
+</details>
+
+

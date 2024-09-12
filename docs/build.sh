@@ -1,5 +1,5 @@
 # shellcheck disable=SC2128
-cd "$(dirname "$BASH_SOURCE")" || exit
+cd "$(dirname "$0")" || exit
 
 echo "$(dirname "$0")"
 
