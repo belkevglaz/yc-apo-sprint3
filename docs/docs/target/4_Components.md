@@ -110,8 +110,8 @@
 Пример схемы взаимодействия при получении события от датчика и запуска сценария.
 
 <details>
-  <summary>C4 Component Device Management Service Diagram</summary>
-    {% include 'assets/target/DinamicDiagram.md' %}
+  <summary>C4 Dynamic Diagram</summary>
+    {% include 'assets/target/DynamicDiagram.md' %}
 </details>
 
 ## 4.3 Диаграмма кода

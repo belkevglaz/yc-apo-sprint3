@@ -1,0 +1,61 @@
+###  Create (register) module
+POST http://localhost:8081/api/v1/modules
+Content-Type: application/json
+
+{
+  "name": "Commutation module {{$random.alphanumeric(10)}}",
+  "manufacturer": "ABC Systems",
+  "serialNumber": "{{$random.alphabetic(10)}}",
+  "houseId": 100,
+  "type": "module",
+  "state": "0"
+}
+
+> {%
+client.global.set("module_id", response.body.id)
+client.global.set("module_sn", response.body.serialNumber)
+ %}
+
+### Get module by serial
+GET http://localhost:8081/api/v1/modules/{{module_sn}}
+
+### Create (register) sensor
+POST http://localhost:8081/api/v1/sensors
+Content-Type: application/json
+
+{
+  "name": "Temperature Sensor {{$random.alphanumeric(10)}}",
+  "manufacturer": "Acara",
+  "serialNumber": "{{$random.alphabetic(10)}}",
+  "houseId": "Settl-1-House-1",
+  "type": "sensor"
+}
+
+> {%
+client.global.set("sensor_id", response.body.id)
+ %}
+
+### Create (register) new relay
+POST http://localhost:8081/api/v1/relays
+Content-Type: application/json
+
+{
+  "name": "Heating relay {{$random.alphanumeric(10)}}",
+  "manufacturer": "Heating Systems Inc.",
+  "serialNumber": "{{$random.alphabetic(10)}}",
+  "houseId": "Settl-1-House-1",
+  "currentValue": 20.0,
+  "targetValue": 20.0,
+  "type": "relay"
+
+}
+
+### Get sensor
+GET http://localhost:8081/api/v1/sensors/{{sensor_id}}
+
+
+### Link Sensor to module
+PUT http://localhost:8081/api/v1/sensors/{{module_id}}/{{sensor_id}}
+
+### Get Linked sensors by module Id
+GET http://localhost:8081/api/v1/sensors//linked/{{module_id}}

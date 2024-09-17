@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+    plugins {
+        id "${quarkusPluginId}" version "${quarkusPluginVersion}"
+    }
+}
+rootProject.name='services'
+
+include 'devices-service'
+project(":devices-service").projectDir = file("devices-service")
+project(":devices-service").name = "devices-service"
+
+include 'telemetry-service'
+project(":telemetry-service").projectDir = file("telemetry-service")
+project(":telemetry-service").name = "telemetry-service"
+
+include 'automation-service'
+project(":automation-service").projectDir = file("automation-service")
+project(":automation-service").name = "automation-service"

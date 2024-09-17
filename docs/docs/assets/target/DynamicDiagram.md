@@ -1,5 +1,5 @@
 ```puml
-@startuml LAYOUT_LANDSCAPE
+@startuml DynamicDiagram
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
 scale 0.85
 
