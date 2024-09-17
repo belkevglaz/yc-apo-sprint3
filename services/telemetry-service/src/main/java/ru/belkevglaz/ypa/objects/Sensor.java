@@ -2,8 +2,6 @@ package ru.belkevglaz.ypa.objects;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 /**
  * Датчик.
  */

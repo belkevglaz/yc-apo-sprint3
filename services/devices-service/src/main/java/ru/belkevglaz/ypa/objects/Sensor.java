@@ -3,7 +3,6 @@ package ru.belkevglaz.ypa.objects;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;

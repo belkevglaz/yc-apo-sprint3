@@ -4,7 +4,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import ru.belkevglaz.ypa.client.DeviceClient;
 import ru.belkevglaz.ypa.kafka.KafkaProducer;
 import ru.belkevglaz.ypa.objects.Telemetry;
 

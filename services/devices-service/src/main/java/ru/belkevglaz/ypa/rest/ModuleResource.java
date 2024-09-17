@@ -22,8 +22,6 @@ import ru.belkevglaz.ypa.objects.Module;
 import ru.belkevglaz.ypa.objects.Sensor;
 import ru.belkevglaz.ypa.services.ModuleService;
 
-import java.util.List;
-
 /**
  */
 @Path("/api/v1/modules")

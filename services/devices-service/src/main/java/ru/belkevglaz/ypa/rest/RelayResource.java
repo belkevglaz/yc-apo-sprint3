@@ -9,7 +9,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -20,13 +19,10 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import ru.belkevglaz.ypa.exceptions.AlreadyExistsException;
-import ru.belkevglaz.ypa.exceptions.NotExistsException;
 import ru.belkevglaz.ypa.objects.Device;
 import ru.belkevglaz.ypa.objects.Relay;
 import ru.belkevglaz.ypa.objects.Sensor;
 import ru.belkevglaz.ypa.services.RelayService;
-
-import java.util.List;
 
 @Path("/api/v1/relays")
 @APIResponses(
