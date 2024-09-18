@@ -23,9 +23,8 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * TODO : describe javaDocs
+ * Сервис для работы с подписками. Создание, запуск, остановка и т.п.
  *
- * @author <a href="mailto:iaksenov@everytag.ru">Aksenov Ivan</a>
  * @since 1.0
  */
 @Slf4j

@@ -23,8 +23,6 @@ import java.util.function.Consumer;
 @Builder
 public class KafkaHouseConsumer implements Runnable {
 
-	static ObjectMapper objectMapper = new ObjectMapper();
-
 	private Subscription subscription;
 
 	private long timeout;

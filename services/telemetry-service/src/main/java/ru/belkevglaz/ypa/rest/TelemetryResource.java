@@ -11,8 +11,10 @@ import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import ru.belkevglaz.ypa.services.TelemetryService;
 
 /**
@@ -20,6 +22,15 @@ import ru.belkevglaz.ypa.services.TelemetryService;
  */
 @Resource
 @Path("/api/v1/telemetry")
+@Tag(name = "Endpoint to handles telemetry from external devices", description = "Telemetry handles API")
+@APIResponses(
+		value = {
+				@APIResponse(
+						responseCode = "503",
+						description = "Internal server error"
+				)
+		}
+)
 public class TelemetryResource {
 
 	@Inject
@@ -44,15 +55,10 @@ public class TelemetryResource {
 							responseCode = "404",
 							description = "Device with given id not found.",
 							content = @Content(mediaType = MediaType.MEDIA_TYPE_WILDCARD)
-					),
-					@APIResponse(
-							responseCode = "503",
-							description = "Couldn't save telemetry data. Internal server error",
-							content = @Content(mediaType = MediaType.MEDIA_TYPE_WILDCARD)
 					)
 			}
 	)
-	public Response receiveRaw(String rawData) {
+	public Response receiveRaw(@Parameter(description = "Telemetry data in raw format.") String rawData) {
 		try {
 			return Response.ok(service.publishRawTelemetry(rawData)).build();
 		} catch (Exception e) {
@@ -78,15 +84,10 @@ public class TelemetryResource {
 							responseCode = "404",
 							description = "Device with given id not found.",
 							content = @Content(mediaType = MediaType.MEDIA_TYPE_WILDCARD)
-					),
-					@APIResponse(
-							responseCode = "503",
-							description = "Couldn't save telemetry data. Internal server error",
-							content = @Content(mediaType = MediaType.MEDIA_TYPE_WILDCARD)
 					)
 			}
 	)
-	public Response receive(ru.belkevglaz.ypa.objects.Telemetry data) {
+	public Response receive(@Parameter(description = "Telemetry entity data") ru.belkevglaz.ypa.objects.Telemetry data) {
 		try {
 			return Response.ok(service.publishTelemetry(data)).build();
 		} catch (Exception e) {
