@@ -23,13 +23,23 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+#      -
+#        name: Build and push
+#        uses: docker/build-push-action@v6
+#        with:
+#          platforms: linux/amd64,linux/arm64
+#          context: smart-home-monolith
+#          push: true
+#          tags: ghcr.io/belkevglaz/smart-home-monolith:latest
+#          cache-from: type=gha
+#          cache-to: type=gha,mode=max
       -
         name: Build and push
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
-          context: smart-home-monolith
+          context: services/automation-service
           push: true
-          tags: ghcr.io/belkevglaz/smart-home-monolith:latest
+          tags: ghcr.io/belkevglaz/automation-service:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
