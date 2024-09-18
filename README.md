@@ -15,9 +15,17 @@ sh ./docs/build.sh
 
 ### Часть 2. Разработка MVP
 
+Код сервисов находится в папке `services`
+
 В рамках практики реализации были разработаны 3 микросервиса, которые реализуют механизм взаимодействия сервисов,
 изображенный на диаграмме [DynamicDiagram](docs/docs/assets/target/DynamicDiagram.md)
 
+Для запуска окружения был подготовлен [docker compose](services/compose.yaml) файл.
+
+```shell
+cd services
+docker compose down -v && docker compose up -d
+```
   
 - Регистрация устройства (датчика). Мета информация по датчику сохраняется в БД.
 
