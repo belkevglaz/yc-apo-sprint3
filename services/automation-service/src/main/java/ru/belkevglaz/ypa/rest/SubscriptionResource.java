@@ -26,7 +26,7 @@ import ru.belkevglaz.ypa.services.SubscriptionService;
  */
 @Path("/api/v1/subscription")
 //@Authenticated
-@Tag(name = "External devices executor resource", description = "External devices management API")
+@Tag(name = "Automations and subscription  management resource", description = "Automation management API")
 @APIResponses(
 		value = {
 				@APIResponse(

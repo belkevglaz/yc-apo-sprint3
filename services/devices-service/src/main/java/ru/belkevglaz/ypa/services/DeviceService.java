@@ -2,12 +2,14 @@ package ru.belkevglaz.ypa.services;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import ru.belkevglaz.ypa.exceptions.AlreadyExistsException;
 import ru.belkevglaz.ypa.objects.Device;
 
 /**
  *
  */
+@Slf4j
 public abstract class DeviceService<T extends  Device> {
 
 	abstract PanacheRepository<T> getRepository();
@@ -23,6 +25,7 @@ public abstract class DeviceService<T extends  Device> {
 
 	@Transactional
 	public T register(T device) throws AlreadyExistsException {
+		log.info("🆗 Registering device: {}", device);
 		T d = findByIdOrSerialNumber(device.getSerialNumber());
 
 		if (d != null) {

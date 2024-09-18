@@ -53,11 +53,13 @@ class Telemetry {
 '--- Device
 
 abstract class Device {
++String name
 +String serialNumber
-+String payload
++String manufacturer
 +String description
++String houseId
 +boolean isDirect
-+String address
++DeviceType type
 }
 
 enum DeviceType {
@@ -68,7 +70,6 @@ enum DeviceType {
 class Module<T> {
 +String id
 +DeviceType type
-+List<Device> devices
 +House house
 +T state
 +boolean register()
@@ -83,8 +84,7 @@ House "1" -- "1..*" Module : contains
 class Sensor<T> {
 +String id
 +DeviceType type
-+House house
-+T state
++T value
 +boolean register()
 +boolean remove()
 }

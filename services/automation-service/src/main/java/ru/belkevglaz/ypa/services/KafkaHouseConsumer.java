@@ -38,7 +38,7 @@ public class KafkaHouseConsumer implements Runnable {
 
 		try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
 			consumer.subscribe(List.of(subscription.getHouseId()));
-			log.info("Created subscription to [{}]", subscription.getHouseId());
+			log.info("🆗 Created subscription to [{}]", subscription.getHouseId());
 			while (!stopped) {
 
 //				log.info("Waiting events... [{}]", subscription.getHouseId());
