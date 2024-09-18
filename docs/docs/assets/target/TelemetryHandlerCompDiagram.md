@@ -10,11 +10,11 @@ title Component diagram for Smart Home System - Telemetry Handler
 AddElementTag("queue", $shape=RoundedBoxShape(), $bgColor="#b6ccde", $fontColor="white", $legendText="event sourcing")
 
 Container_Boundary(SmartHomeSystem, "SmartHome System") {
-    Container(ms_telemetry, "Telemetry Handler", "Java, Spring", "Handles external devices messages")
+    Container(ms_telemetry, "Telemetry Handler", "Java, Quarkus", "Handles external devices messages")
     ContainerQueue(kafka, "Kafka", "kafka", "Event sourcing for aggregate and store telemetry events", $tags = "queue")
 }
 
-Container(ms_telemetry, "", "Java, Spring") {
+Container(ms_telemetry, "", "Java, Quarkus") {
     Component(ModulesController, "ModulesController", "Handles messages from modules")
     Component(SensorsController, "SensorsController", "Handles messages directly from sensors")
     Component(ServiceLayer, "Service Layer", "Transformation messages business logic")

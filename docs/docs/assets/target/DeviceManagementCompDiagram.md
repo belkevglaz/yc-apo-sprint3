@@ -16,12 +16,12 @@ System_Ext(sensors, "Third-Party Sensors", "Endpoints for retrieve/set data", "U
 
 
 Container_Boundary(SmartHomeSystem, "SmartHome System") {
-    Container(DeviceManagement, "Device Management", "Java, Spring", "Processes device management")
+    Container(DeviceManagement, "Device Management", "Java, Quarkus", "Processes device management")
     ContainerQueue(Kafka, "Kafka", "kafka", "Event souring for aggregate and store telemetry events", $tags = "queue")
     ContainerDb(DeviceDatabase, "Devices database", "PostgreSQL", "Stores devices and modules information", $tags = "storage")
 }
 
-Container(DeviceManagement, "", "Java, Spring") {
+Container(DeviceManagement, "", "Java, Quarkus") {
     Component(RegistrationController, "Registration Controller", "Handles requests to register devices")
     Component(RegistrationService, "Registration Service", "Handles registration business logic")
     Component(DeviceController, "Device Controller", "Handles messages from devices")

@@ -5,14 +5,13 @@ import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import ru.belkevglaz.ypa.kafka.KafkaProducer;
-import ru.belkevglaz.ypa.objects.Telemetry;
 
 /**
  *
  */
 @Slf4j
 @ApplicationScoped
-public class KafkaService {
+public class TelemetryService {
 
 	@Inject
 	KafkaProducer producer;
@@ -25,7 +24,7 @@ public class KafkaService {
 	 *
 	 * @param raw сырые данные с датчика
 	 */
-	public Telemetry publishRawTelemetry(String raw) {
+	public ru.belkevglaz.ypa.objects.Telemetry publishRawTelemetry(String raw) {
 		val telemetry = transformTelemetry(raw);
 		return publishTelemetry(telemetry);
 	}
@@ -33,10 +32,10 @@ public class KafkaService {
 	/**
 	 * Публикуем данные телеметрии.
 	 *
-	 * @param telemetry {@link Telemetry}
-	 * @return {@link Telemetry}
+	 * @param telemetry {@link ru.belkevglaz.ypa.objects.Telemetry}
+	 * @return {@link ru.belkevglaz.ypa.objects.Telemetry}
 	 */
-	public Telemetry publishTelemetry(Telemetry telemetry) {
+	public ru.belkevglaz.ypa.objects.Telemetry publishTelemetry(ru.belkevglaz.ypa.objects.Telemetry telemetry) {
 
 		telemetry.setHouseId("Settl-1-House-1");
 
@@ -45,16 +44,16 @@ public class KafkaService {
 
 
 	/**
-	 * Конвертируем сырые данные в {@link Telemetry}.
+	 * Конвертируем сырые данные в {@link ru.belkevglaz.ypa.objects.Telemetry}.
 	 *
 	 * @param raw сырые данные
-	 * @return {@link Telemetry}
+	 * @return {@link ru.belkevglaz.ypa.objects.Telemetry}
 	 */
-	Telemetry transformTelemetry(String raw) {
+	ru.belkevglaz.ypa.objects.Telemetry transformTelemetry(String raw) {
 
 		// todo : implements transform raw data to Telemetry object
 		log.info("Transformed raw data to telemetry");
-		return Telemetry.builder().deviceId("DEV-NUM-01").build();
+		return ru.belkevglaz.ypa.objects.Telemetry.builder().deviceId("DEV-NUM-01").build();
 
 	}
 

@@ -11,7 +11,6 @@ import ru.belkevglaz.ypa.objects.Sensor;
  *
  * @since 1.0
  */
-@RestClient
 @Path("/api/v1/sensors/")
 public interface DeviceClient {
 

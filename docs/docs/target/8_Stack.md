@@ -1,7 +1,7 @@
 # 8. Технологический стек
 
 * Java
-* Spring
+* Quarkus
 * PostgreSQL
 * Kafka
 * Websockets
