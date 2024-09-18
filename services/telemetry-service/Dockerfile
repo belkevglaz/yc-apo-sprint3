@@ -4,6 +4,9 @@ FROM registry.access.redhat.com/ubi8/openjdk-17:1.20
 
 ENV LANGUAGE='en_US:en'
 
+USER root
+RUN microdnf -y install nano curl ca-certificates wget tar unzip iputils tzdata-java procps nc
+
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
 COPY --chown=185 build/quarkus-app/lib/ /deployments/lib/

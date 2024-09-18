@@ -1,0 +1,31 @@
+### 1. Create (register) sensor
+POST http://localhost:8081/api/v1/sensors
+Content-Type: application/json
+
+{
+  "name": "Temperature Sensor {{$random.alphanumeric(10)}}",
+  "manufacturer": "Acara",
+  "serialNumber": "{{$random.alphabetic(10)}}",
+  "houseId": "Settl-1-House-1",
+  "type": "sensor"
+}
+
+
+### 2. Create subscription. House #1
+POST http://localhost:8083/api/v1/subscription
+Content-Type: application/json
+
+{
+  "houseId": "Settl-1-House-1"
+}
+
+
+### 3. Post sensor telemetry data
+POST http://localhost:8082/api/v1/telemetry
+Content-Type: application/json
+
+{
+  "deviceId": "{{$random.alphabetic(10)}}",
+  "moduleId": "{{$random.alphabetic(10)}}",
+  "value": "26.5"
+}
