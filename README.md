@@ -1,74 +1,133 @@
-# Базовая настройка
+# Проектная работа по курсу "Архитектор ПО" 
 
-## Запуск minikube
+## Спринт 3
 
-[Инструкция по установке](https://minikube.sigs.k8s.io/docs/start/)
+### Часть 1. Документация
 
-```bash
-minikube start
+Документация: [docs](docs)
+
+Сборка документации
+```shell
+sh ./docs/build.sh
+```
+
+Описание архитектуры и схемы доступны в mkdocs документации [доступен в браузере](http://127.0.0.1:8000/).
+
+### Часть 2. Разработка MVP
+
+Код сервисов находится в папке `services`
+
+В рамках практики реализации были разработаны 3 микросервиса, которые реализуют механизм взаимодействия сервисов,
+изображенный на диаграмме [DynamicDiagram](docs/docs/assets/target/DynamicDiagram.md)
+
+Для запуска окружения был подготовлен [docker compose](services/compose-ghcr.yaml) файл.
+
+```shell
+cd services
+docker compose -f compose-ghcr.yaml down -v && docker compose -f compose-ghcr.yaml up -d
+```
+
+---
+> [!TIP]
+> В случае невозможности запуска с использованием образов из ghcr, можно запустить с локальной сборкой  
+> Docker compose был переделан на использование локальных образов.
+
+Для запуска необходимо из папки `./services` запустить сборку java-приложений.
+
+```shell
+cd services
+
+./gradle clean build -x test
+```
+После сделать build
+```shell
+docker compose build
+```
+
+И после этого запустить docker compose
+
+```shell
+docker compose down -v && docker compose up -d
+```
+
+---
+
+Docker compose был переделан на использование локальных образов.
+
+Для запуска необходимо из папки `./services` запустить сборку java-приложений.
+
+```shell
+
+./gradle clean build -x test
+```
+После сделать build
+```shell
+docker compose build
+```
+
+И после этого запустить docker compose
+
+---
+
+---
+
+  
+- Регистрация устройства (датчика). Мета информация по датчику сохраняется в БД.
+
+```shell
+## Регистрация датчика
+curl -X POST --location "http://localhost:8081/api/v1/sensors" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "name": "Temperature Sensor 7V0QPVvR0K",
+          "manufacturer": "Acara",
+          "serialNumber": "cSghiUGYVN",
+          "houseId": "Settl-1-House-1",
+          "type": "sensor"
+        }'
+```
+
+- Создание подписки на события по заданному дому. После создания подписки, создается слушатель kafka-топика для событий конкретного дома.
+
+```shell
+## Администратор создает подписку для данного дома
+curl -X POST --location "http://localhost:8083/api/v1/subscription" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "houseId": "Settl-1-House-1"
+        }'
+```
+
+- Пример отправки события телеметрии, пришедшего от датчика. Событие трансформируется и записывается в kafka-топик, 
+    откуда будет вычитано соответсвующей подпиской.
+
+```shell
+## Датчик шлет событие
+curl -X POST --location "http://localhost:8082/api/v1/telemetry" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "deviceId": "LtTSrViuQp",
+          "moduleId": "MzsEJSlPvI",
+          "value": "26.5"
+        }'
+```
+
+В результате в сервисе `devices-service` происходит вызов командного ресурса, для изменения состояния удаленного датчика (эмуляция.)
+При выполнении запросов в логах сервиса как результат, должны появиться сообщения, которые символизируют об отработке потока и получении 
+сервисом `devices-serivce` управляющей команды на изменение состояния на основе события от датчика.
+```
+[ru.bel.ypa.res.ExecutorResource] (executor-thread-1) ⏭ Executing command: [SetTargetTemperature = 26.5] for device id [LtTSrViuQp]
 ```
 
 
-## Добавление токена авторизации GitHub
+Документация OpenAPI доступна на ресурсах сервисов.
 
-[Получение токена](https://github.com/settings/tokens/new)
+[Device Management OpenAPI](http://localhost:8081/q/openapi)   
+[Telemetry Handler OpenAPI](http://localhost:8082/q/openapi)   
+[Automation Management OpenAPI](http://localhost:8083/q/openapi)   
 
-```bash
-kubectl create secret docker-registry ghcr --docker-server=https://ghcr.io --docker-username=<github_username> --docker-password=<github_token> -n default
-```
+Swagger-ui также доступен на ресурсах сервисов.
 
-
-## Установка API GW kusk
-
-[Install Kusk CLI](https://docs.kusk.io/getting-started/install-kusk-cli)
-
-```bash
-kusk cluster install
-```
-
-
-## Настройка terraform
-
-[Установите Terraform](https://yandex.cloud/ru/docs/tutorials/infrastructure-management/terraform-quickstart#install-terraform)
-
-
-Создайте файл ~/.terraformrc
-
-```hcl
-provider_installation {
-  network_mirror {
-    url = "https://terraform-mirror.yandexcloud.net/"
-    include = ["registry.terraform.io/*/*"]
-  }
-  direct {
-    exclude = ["registry.terraform.io/*/*"]
-  }
-}
-```
-
-## Применяем terraform конфигурацию 
-
-```bash
-cd terraform
-terraform apply
-```
-
-## Настройка API GW
-
-```bash
-kusk deploy -i api.yaml
-```
-
-## Проверяем работоспособность
-
-```bash
-kubectl port-forward svc/kusk-gateway-envoy-fleet -n kusk-system 8080:80
-curl localhost:8080/hello
-```
-
-
-## Delete minikube
-
-```bash
-minikube delete
-```
+[Device Management Swagger](http://localhost:8081/q/swagger-ui/)  
+[Telemetry Handler Swagger](http://localhost:8082/q/swagger-ui/)  
+[Automation Management Swagger](http://localhost:8083/q/swagger-ui/)

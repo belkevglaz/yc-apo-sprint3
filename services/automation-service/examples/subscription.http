@@ -1,0 +1,7 @@
+###  Create subscription. House #1
+POST http://localhost:8083/api/v1/subscription
+Content-Type: application/json
+
+{
+  "houseId": "Settl-1-House-1"
+}

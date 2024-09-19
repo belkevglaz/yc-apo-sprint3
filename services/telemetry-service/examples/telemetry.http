@@ -1,0 +1,9 @@
+### Post sensor telemetry data
+POST http://localhost:8082/api/v1/telemetry
+Content-Type: application/json
+
+{
+  "deviceId": "{{$random.alphabetic(10)}}",
+  "moduleId": "{{$random.alphabetic(10)}}",
+  "value": "26.5"
+}

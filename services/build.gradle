@@ -1,0 +1,10 @@
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+
+subprojects {
+    group 'ru.belkevglaz.ypa'
+    version '1.0-SNAPSHOT'
+}

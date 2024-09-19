@@ -1,0 +1,18 @@
+site_name: SmartHome Documentation
+theme: readthedocs
+
+markdown_extensions:
+  - md_in_html
+  - plantuml_markdown
+#  - markdown_include.include:
+#      base_path: docs
+extra_css:
+  - 'extra.css'
+plugins:
+  - search
+  - macros
+  - exclude:
+      glob:
+        - assets/*
+  - plantuml:
+      puml_url: https://www.plantuml.com/plantuml/
