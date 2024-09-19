@@ -20,7 +20,7 @@ sh ./docs/build.sh
 В рамках практики реализации были разработаны 3 микросервиса, которые реализуют механизм взаимодействия сервисов,
 изображенный на диаграмме [DynamicDiagram](docs/docs/assets/target/DynamicDiagram.md)
 
-Для запуска окружения был подготовлен [docker compose](services/compose.yaml) файл.
+Для запуска окружения был подготовлен [docker compose](services/compose-ghcr.yaml) файл.
 
 ```shell
 cd services
@@ -29,7 +29,7 @@ docker compose -f compose-ghcr.yaml down -v && docker compose -f compose-ghcr.ya
 
 ---
 > [!TIP]
-> В случае невозможности запуска с использованием образов из ghcr, можно запустить с локальной сборкой
+> В случае невозможности запуска с использованием образов из ghcr, можно запустить с локальной сборкой  
 > Docker compose был переделан на использование локальных образов.
 
 Для запуска необходимо из папки `./services` запустить сборку java-приложений.
