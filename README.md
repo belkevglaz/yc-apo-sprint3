@@ -24,8 +24,53 @@ sh ./docs/build.sh
 
 ```shell
 cd services
+docker compose -f compose-ghcr.yaml down -v && docker compose -f compose-ghcr.yaml up -d
+```
+
+---
+> [!TIP]
+> В случае невозможности запуска с использованием образов из ghcr, можно запустить с локальной сборкой
+> Docker compose был переделан на использование локальных образов.
+
+Для запуска необходимо из папки `./services` запустить сборку java-приложений.
+
+```shell
+cd services
+
+./gradle clean build -x test
+```
+После сделать build
+```shell
+docker compose build
+```
+
+И после этого запустить docker compose
+
+```shell
 docker compose down -v && docker compose up -d
 ```
+
+---
+
+Docker compose был переделан на использование локальных образов.
+
+Для запуска необходимо из папки `./services` запустить сборку java-приложений.
+
+```shell
+
+./gradle clean build -x test
+```
+После сделать build
+```shell
+docker compose build
+```
+
+И после этого запустить docker compose
+
+---
+
+---
+
   
 - Регистрация устройства (датчика). Мета информация по датчику сохраняется в БД.
 
@@ -85,4 +130,4 @@ Swagger-ui также доступен на ресурсах сервисов.
 
 [Device Management Swagger](http://localhost:8081/q/swagger-ui/)  
 [Telemetry Handler Swagger](http://localhost:8082/q/swagger-ui/)  
-[Automation Management Swagger](http://localhost:8083/q/swagger-ui/)  
+[Automation Management Swagger](http://localhost:8083/q/swagger-ui/)

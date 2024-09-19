@@ -9,10 +9,10 @@ RUN microdnf -y install nano curl ca-certificates wget tar unzip iputils tzdata-
 
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 build/quarkus-app/lib/ /deployments/lib/
 COPY --chown=185 build/quarkus-app/*.jar /deployments/
 COPY --chown=185 build/quarkus-app/app/ /deployments/app/
 COPY --chown=185 build/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --chown=185 build/quarkus-app/lib/ /deployments/lib/
 
 EXPOSE 8082
 USER 185
